@@ -1,0 +1,62 @@
+<nav class="sticky top-0 z-50 bg-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between p-4 md:px-8">
+    <a href="/" class="text-2xl font-bold text-blue-600">JOBFINDER</a>
+
+    <!-- Desktop Links -->
+    <div class="hidden space-x-6 md:flex items-center">
+      <a href="/" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+      <% if (user) { %>
+      <a href="#" class="text-gray-600 hover:text-blue-600 transition">Applied Jobs</a>
+      <% } %>
+
+        <% if (user && user.role === "employer") { %>
+        <a href="/jobs/add" class="text-gray-600 hover:text-blue-600 py-2 transition">Post a Job</a>
+      <% } %>
+
+      <% if (user) { %>
+        <!-- Show these if logged in -->
+        <a href="/users/profile" title="Profile">
+          <i class="fas fa-user-circle text-2xl text-blue-600"></i>
+        </a>
+        <a href="/users/logout" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Logout</a>
+      <% } else { %>
+        <!-- Show these if logged out -->
+        <a href="/users/login" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Login</a>
+        <a href="/users/register" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Sign Up</a>
+      <% } %>
+    </div>
+
+    <!-- Mobile Menu Toggler -->
+    <div class="flex items-center space-x-4 md:hidden">
+      
+      <% if (user) { %>
+        <a href="/users/profile" title="Profile">
+          <i class="fas fa-user-circle text-2xl text-blue-600"></i>
+        </a>
+      <% } %>
+      <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 py-2">
+    <div class="flex flex-col space-y-2 p-4">
+      <% if (user) { %>
+      <a href="#" class="text-gray-600 hover:text-blue-600 py-2 transition">Applied Jobs</a>
+      <% } %>
+
+
+      <% if (user) { %>
+        <a href="/users/logout" class="text-gray-600 hover:text-blue-600 py-2 transition">Logout</a>
+      <% } else { %>
+        <a href="/users/login" class="text-gray-600 hover:text-blue-600 py-2 transition">Login</a>
+        <a href="/users/register" class="text-gray-600 hover:text-blue-600 py-2 transition">Sign Up</a>
+      <% } %>
+      <% if ( user && user.role === "employer") { %>
+        <a href="/jobs/add" class="text-gray-600 hover:text-blue-600 py-2 transition">Post a Job</a>
+      <% } %>
+    </div>
+  </div>
+</nav>
