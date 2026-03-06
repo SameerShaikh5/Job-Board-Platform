@@ -2,7 +2,7 @@
 
 import express from "express";
 import { authorizeEmployer, isAuthenticated } from "../middlewares/auth.js";
-import { createJobPage, createJob, editJob, editJobPage, jobDetailsPage, deleteJob, applyForJob, viewAppliedJobs } from "../controllers/jobController.js";
+import { createJobPage, createJob, editJob, editJobPage, jobDetailsPage, deleteJob, applyForJob, viewAppliedJobs, viewPostedJobs, viewJobApplicants } from "../controllers/jobController.js";
 
 const router = express.Router();
 
@@ -16,12 +16,17 @@ router.route("/add")
 router.route("/edit/:id")
     .get(isAuthenticated, authorizeEmployer, editJobPage)
     .post(isAuthenticated, authorizeEmployer, editJob)
+    
+router.get("/apply/:id", isAuthenticated, applyForJob)
+
+
+router.get("/posted-jobs", isAuthenticated, viewPostedJobs);
 
 router.route("/:id")
     .get(jobDetailsPage)
 
-router.get("/apply/:id", isAuthenticated, applyForJob)
 
+router.get("/:id/applicants", isAuthenticated,authorizeEmployer, viewJobApplicants);
 
 router.post("/delete/:id", isAuthenticated, authorizeEmployer, deleteJob);
 

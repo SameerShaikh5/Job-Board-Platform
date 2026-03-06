@@ -1,0 +1,62 @@
+# How to Run the JobFinder Project
+
+This guide explains how to set up and run the JobFinder web application on your local system.
+
+---
+## 🧩 1. Prerequisites
+Before running the project, make sure you have the following installed:
+- Node.js (v16 or higher)
+- MongoDB (local)
+
+
+If you downloaded as a ZIP file:
+- Extract it
+- Open the project folder in your terminal or VS Code
+
+---
+## 📦 3. Install Dependencies
+Run this command to install all required packages:
+
+    npm install
+
+
+---
+## 🗝️ 4. Setup Environment Variables
+
+Create a file named `.env` in the root directory and add the following values:
+
+    
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/jobfinder
+JWT_SECRET=fksjdlasdkf
+
+---
+## ▶️ 6. Run the Server
+
+Run the following command:
+
+    npm run dev
+
+This will start the server with Nodemon. You should see:
+
+    🚀 Server running on http://localhost:3000
+    Database connected successfully!
+
+---
+## 🌐 7. Open the App
+
+Go to your browser and visit:
+
+    http://localhost:3000
+
+You should see the **JobFinder Home Page**.
+
+---
+## 🧠 8. Login Credentials (Optional)
+
+If you already have users in your database, log in using those credentials.  
+Otherwise, register as:
+- **Employer**: to post and manage jobs.
+- **User**: to apply for jobs and view applications.
+
+---

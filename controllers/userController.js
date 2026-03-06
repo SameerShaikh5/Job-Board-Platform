@@ -48,7 +48,7 @@ export const loginUser = async (req, res) => {
   try {
     let { email, password } = req.body;
     password = password.trim()
-    email = email.trim()
+    email = email.trim().toLowerCase()
 
     const user = await User.findOne({ email });
 

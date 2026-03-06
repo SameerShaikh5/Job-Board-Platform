@@ -116,6 +116,7 @@ export const jobDetailsPage = async (req, res) => {
         job: job._id,
       });
       hasApplied = !!existingApp;
+
     }
 
     res.render("jobdetailpage", {
@@ -237,5 +238,55 @@ export const viewAppliedJobs = async (req, res) => {
       errorMessage: "Server Error"
     });
 
+  }
+};
+
+// View all posted jobs for an employer
+export const viewPostedJobs = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.redirect("/users/login");
+    }
+
+    // Ensure only employers can access
+    if (req.user.role !== "employer") {
+      return res.status(403).render("error", { message: "Access denied. Only employers can view this page." });
+    }
+
+    // Fetch jobs posted by this employer
+    const jobs = await Job.find({ postedBy: req.user._id }).sort({ createdAt: -1 });
+
+    res.render("postedjobs", { user: req.user, jobs });
+  } catch (error) {
+    console.error(error);
+    res.status(500).render("postedjobs", { jobs: [], errorMessage: "Server Error" });
+  }
+};
+
+
+
+export const viewJobApplicants = async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id);
+    if (!job) {
+      return res.status(404).render("error", { message: "Job not found!" });
+    }
+
+    // Check if logged-in employer owns the job
+    if (job.postedBy.toString() !== req.user._id.toString()) {
+      return res.status(403).render("error", { message: "Unauthorized access." });
+    }
+
+    const applications = await Application.find({ job: job._id })
+      .populate("user", "name email skills contact");
+
+    res.render("jobApplicants", {
+      user: req.user,
+      job,
+      applications,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).render("error", { message: "Server error while fetching applicants." });
   }
 };
