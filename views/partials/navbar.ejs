@@ -7,82 +7,70 @@
       <a href="/" class="text-gray-600 hover:text-blue-600 transition">Home</a>
 
       <% if (user) { %>
-        <% if (user.role==="user" ) { %>
+        <% if (user.role === "user") { %>
           <a href="/jobs/applied-jobs" class="text-gray-600 hover:text-blue-600 transition">Applied Jobs</a>
-          <% } else if (user.role==="employer" ) { %>
-            <a href="/jobs/posted-jobs" class="text-gray-600 hover:text-blue-600 transition">Posted Jobs</a>
-            <% } %>
-              <% } %>
+        <% } else if (user.role === "employer") { %>
+          <a href="/jobs/posted-jobs" class="text-gray-600 hover:text-blue-600 transition">Posted Jobs</a>
+        <% } %>
+      <% } %>
 
-                <% if (user && user.role==="employer" ) { %>
-                  <a href="/jobs/add" class="text-gray-600 hover:text-blue-600 py-2 transition">Post a Job</a>
-                  <% } %>
+      <% if (user && user.role === "employer") { %>
+        <a href="/jobs/add" class="text-gray-600 hover:text-blue-600 py-2 transition">Post a Job</a>
+      <% } %>
 
-                    <% if (user) { %>
-                      <a href="/users/profile" title="Profile">
-                        <i class="fas fa-user-circle text-2xl text-blue-600"></i>
-                      </a>
-                      <a href="/users/logout"
-                        class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Logout</a>
-                      <% } else { %>
-                        <a href="/users/login"
-                          class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Login</a>
-                        <a href="/users/register"
-                          class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Sign Up</a>
-                        <% } %>
+      <% if (user) { %>
+        <a href="/users/profile" title="Profile">
+          <i class="fas fa-user-circle text-2xl text-blue-600"></i>
+        </a>
+        <a href="/users/logout" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">
+          Logout
+        </a>
+      <% } else { %>
+        <a href="/users/login" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Login</a>
+        <a href="/users/register" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">Sign Up</a>
+      <% } %>
     </div>
 
+    <!-- Hamburger -->
     <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
-
-
-    <!-- Mobile Menu Toggler -->
-    <!-- Mobile Menu -->
-    <!-- <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 py-2">
-      <div class="flex flex-col space-y-2 p-4">
-        <% if (user) { %>
-          <% if (user.role==="user" ) { %>
-            <a href="/applied-jobs" class="text-gray-600 hover:text-blue-600 py-2 transition">Applied Jobs</a>
-            <% } else if (user.role==="employer" ) { %>
-              <a href="/jobs/posted-jobs" class="text-gray-600 hover:text-blue-600 py-2 transition">Posted Jobs</a>
-              <% } %>
-                <% } %>
-
-                  <% if (user) { %>
-                    <a href="/users/logout" class="text-gray-600 hover:text-blue-600 py-2 transition">Logout</a>
-                    <% } else { %>
-                      <a href="/users/login" class="text-gray-600 hover:text-blue-600 py-2 transition">Login</a>
-                      <a href="/users/register" class="text-gray-600 hover:text-blue-600 py-2 transition">Sign Up</a>
-                      <% } %>
-
-                        <% if (user && user.role==="employer" ) { %>
-                          <a href="/jobs/add" class="text-gray-600 hover:text-blue-600 py-2 transition">Post a Job</a>
-                          <% } %>
-      </div>
-    </div> -->
-
   </div>
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 py-2">
     <div class="flex flex-col space-y-2 p-4">
+
       <% if (user) { %>
-        <a href="/jobs/applied-jobs" class="text-gray-600 hover:text-blue-600 py-2 transition">Applied Jobs</a>
+        <% if (user.role === "user") { %>
+          <a href="/jobs/applied-jobs" class="text-gray-600 hover:text-blue-600 py-2 transition">Applied Jobs</a>
+          
+
+        </a>
+        <% } else if (user.role === "employer") { %>
+          <a href="/jobs/posted-jobs" class="text-gray-600 hover:text-blue-600 py-2 transition">Posted Jobs</a>
         <% } %>
+      <% } %>
 
+      <% if (user && user.role === "employer") { %>
+        <a href="/jobs/add" class="text-gray-600 hover:text-blue-600 py-2 transition">Post a Job</a>
+      <% } %>
 
-          <% if (user) { %>
-            <a href="/users/logout" class="text-gray-600 hover:text-blue-600 py-2 transition">Logout</a>
-            <% } else { %>
-              <a href="/users/login" class="text-gray-600 hover:text-blue-600 py-2 transition">Login</a>
-              <a href="/users/register" class="text-gray-600 hover:text-blue-600 py-2 transition">Sign Up</a>
-              <% } %>
-                <% if ( user && user.role==="employer" ) { %>
-                  <a href="/jobs/add" class="text-gray-600 hover:text-blue-600 py-2 transition">Post a Job</a>
-                  <% } %>
+      <% if (user) { %>
+        <a href="/users/logout" class="text-gray-600 hover:text-blue-600 py-2 transition">Logout</a>
+        <a href="/users/profile" title="Profile">
+          <i class="fas fa-user-circle text-2xl text-blue-600"></i>
+          Profile
+        </a>
+      <% } else { %>
+        <a href="/users/login" class="text-gray-600 hover:text-blue-600 py-2 transition">Login</a>
+        <a href="/users/register" class="text-gray-600 hover:text-blue-600 py-2 transition">Sign Up</a>
+      <% } %>
+
     </div>
   </div>
 </nav>
